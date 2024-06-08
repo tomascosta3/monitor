@@ -17,5 +17,11 @@ def login():
 def root():
     return redirect(url_for('login'))
 
+
+def pagina_no_encontrada(error):
+    return redirect(url_for('login'))
+
+
 if __name__ == '__main__':
+    app.register_error_handler(404, pagina_no_encontrada)
     app.run(host="127.0.0.1", port=8000, debug = True)
