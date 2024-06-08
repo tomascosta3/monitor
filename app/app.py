@@ -5,9 +5,13 @@ app = Flask(__name__, static_url_path='/templates')
 def registrarse():
     return render_template('registrarse.html')
 
-@app.route('/login')
+@app.route('/login', methods = ['POST', 'GET'])
 def login():
-    return render_template('login.html')
+    if request.method == 'GET':
+        return render_template('login.html')
+    if request.method == 'POST':
+        username = request.form['username']
+        return request.form
 
 @app.route('/')
 def root():
