@@ -7,8 +7,12 @@ a {
     text-decoration: none;
 }
 
+button {
+    font-size: var(--font-size);
+}
+
 .formulario {
-    width: 25%;
+    width: 30%;
 }
 
 .formulario .botones {
@@ -19,7 +23,7 @@ a {
 .datos {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
     margin-bottom: 1rem;
 }
 
