@@ -1,6 +1,6 @@
 from flask import Flask, redirect, url_for, request, render_template, jsonify
 from flask_cors import CORS, cross_origin
-from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 from models import db, Usuario, UsuarioLogueo
 
 app = Flask(__name__)
@@ -11,7 +11,28 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
-@app.route('/registrar-usuario', methods=['POST'])
+
+@app.route('/login', methods = ['POST'])
+def login():
+    try:
+        data = request.get_json()
+        usuario_acceso = data.get('usuario')
+        contrasena = data.get('contrasena')
+
+        usuario = Usuario.query.filter((Usuario.email == usuario_acceso) | (Usuario.username == usuario_acceso)).first()
+
+        if usuario:
+            usuario_logueo = UsuarioLogueo.query.filter_by(id_usuario = usuario.id).first()
+            if usuario_logueo and check_password_hash(usuario_logueo.contrasena, contrasena):
+                return jsonify({'mensaje': 'Inicio de sesión exitoso'}), 200
+        return jsonify({'error': 'Credenciales incorrectas'}), 401
+
+    except Exception as e:
+        return jsonify({'error': 'Ocurrió un error al iniciar sesión', 'detalle': str(e)}), 500
+
+
+
+@app.route('/registrar-usuario', methods = ['POST'])
 def registrar_usuario():
     try:
         data = request.get_json()
@@ -46,10 +67,12 @@ def registrar_usuario():
         db.session.commit()
 
         return jsonify({'mensaje': 'Usuario registrado exitosamente'}), 201
+
     except Exception as e:
         db.session.rollback()
         app.logger.error('Error al registrar el usuario: %s', e)
         return jsonify({'error': 'Ocurrió un error al registrar el usuario', 'detalle': str(e)}), 500
+        
     finally:
         db.session.close()
 

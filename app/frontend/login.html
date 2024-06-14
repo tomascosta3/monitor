@@ -12,16 +12,17 @@
 <body>
 
     <section class="centered">
+        <div class="error" id="error"></div>
         <div class="formulario">
-            <form action="#" method="post">
+            <form id="loginForm">
                 <div class="datos">
                     <div class="input-container">
                         <p>Email / Nombre de usuario</p>
-                        <input type="text" name="username" placeholder="Email o nombre de usuario">
+                        <input type="text" id="usuario" name="usuario" placeholder="Email o nombre de usuario">
                     </div>
                     <div class="input-container">
                         <p>Contraseña</p>
-                        <input type="password" name="password" placeholder="Contraseña">
+                        <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña">
                     </div>
                 </div>
                 <div class="acceso flex justify-evenly">
@@ -29,7 +30,7 @@
                         <input type="checkbox" name="recordar-password" id="recordar-password">
                         <label for="recordar-password">Recordar contraseña</label>
                     </div>
-                    <button>Iniciar sesión</button>
+                    <button type="submit">Iniciar sesión</button>
                 </div>
                 <hr>
                 <div class="botones">
