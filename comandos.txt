@@ -1,0 +1,9 @@
+Iniciar backend server
+python3 app/app.py
+
+Iniciar frontend server
+cd app/frontend
+python3 -m http.server 8000
+
+Exportar requerimientos
+pip freeze > requirements.txt
