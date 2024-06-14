@@ -21,17 +21,21 @@ a {
 
 .centered {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     min-height: 100%;
+    gap: 2rem;
 }
 
 .formulario {
+    width: 35%;
+}
+
+.formulario .botones {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .datos {
@@ -109,7 +113,6 @@ button:active {
 .input-container input {
     width: 100%;
     padding: 10px;
-    /* padding-top: 12px; */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
@@ -124,4 +127,6 @@ button:active {
 
 .error {
     color: red;
+    max-width: 60%;
+    text-align: center;
 }
