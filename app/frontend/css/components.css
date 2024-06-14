@@ -1,0 +1,115 @@
+p {
+    margin: 0;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.formulario {
+    width: 25%;
+}
+
+.formulario .botones {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.datos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.acceso {
+    gap: 1rem;
+}
+
+.campo {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.campo input, .campo label {
+    cursor: pointer;
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-evenly {
+    justify-content: space-evenly;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.w-40 {
+    width: 45%;
+}
+
+hr {
+    margin: 1rem;
+}
+
+button {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+button:active {
+    background-color: var(--active-color);
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+.input-container p {
+    text-align: left;
+    background-color: #fff;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 5px;
+    font-size: var(--font-size);
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-container input:focus {
+    border-color: var(--input-focus-border-color);
+}
+
+.error {
+    color: var(--error-color);
+    max-width: 60%;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .formulario {
+        width: 35%;
+    }
+}

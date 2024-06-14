@@ -1,0 +1,11 @@
+:root {
+    --font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    --font-size: 16px;
+    --primary-color: #e9e9e9;
+    --secondary-color: #d6d6d6;
+    --active-color: #c9c8c8;
+    --error-color: red;
+    --input-border-color: #ccc;
+    --input-focus-border-color: #a09f9f;
+    --text-color: #333;
+}
