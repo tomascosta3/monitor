@@ -4,6 +4,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
 
     const usuario = document.getElementById('usuario').value;
     const contrasena = document.getElementById('contrasena').value;
+    const recordar = document.getElementById('recordarContrasena').value;
     const errorDiv = document.getElementById('error');
 
     errorDiv.textContent = '';
@@ -22,7 +23,8 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
         },
         body: JSON.stringify({
             usuario: usuario,
-            contrasena: contrasena
+            contrasena: contrasena,
+            recordar: recordar
         })
     })
         .then(response => response.json())
