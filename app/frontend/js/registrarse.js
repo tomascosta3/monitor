@@ -65,3 +65,7 @@ document.getElementById('usuarioRegistroForm').addEventListener('submit', functi
             console.error('Error:', error);
         });
 });
+
+document.getElementById('botonVolver').addEventListener('click', function () {
+    window.location.href = './login.html';
+})
