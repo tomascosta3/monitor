@@ -88,6 +88,7 @@ button:active {
     text-align: left;
     background-color: #fff;
     margin: 0;
+    margin-bottom: 0.5rem;
     color: var(--text-color);
 }
 
@@ -112,8 +113,8 @@ button:active {
     text-align: center;
 }
 
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
     .formulario {
-        width: 35%;
+        width: 80%;
     }
 }
