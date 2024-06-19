@@ -86,7 +86,6 @@ button:active {
 
 .input-container p {
     text-align: left;
-    background-color: #fff;
     margin: 0;
     margin-bottom: 0.5rem;
     color: var(--text-color);
