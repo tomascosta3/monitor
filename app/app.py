@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for, request, render_template, jsonify
 from flask_cors import CORS, cross_origin
 from flask_jwt_extended import JWTManager, create_access_token, set_access_cookies, unset_jwt_cookies
 from werkzeug.security import check_password_hash, generate_password_hash
-from models import db, Usuario, UsuarioLogueo
+from models import db, Usuario, UsuarioLogueo, Categoria, Gasto
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -84,6 +84,20 @@ def registrar_usuario():
             contrasena=hashed_password
         )
         db.session.add(nuevo_usuario_logueo)
+        db.session.commit()
+
+        # Por cada nuevo usuario le añado categorías predeterminadas
+        categorias_predeterminadas = [
+            {'nombre': 'Alimentos', 'descripcion': 'Gastos en alimentos', 'id_usuario': nuevo_usuario.id_usuario},
+            {'nombre': 'Transporte', 'descripcion': 'Gastos en transporte', 'id_usuario': nuevo_usuario.id_usuario},
+            {'nombre': 'Entretenimiento', 'descripcion': 'Gastos en entretenimiento', 'id_usuario': nuevo_usuario.id_usuario},
+            {'nombre': 'Otros', 'descripcion': 'Otros gastos', 'id_usuario': nuevo_usuario.id_usuario}
+        ]
+
+        for categoria in categorias_predeterminadas:
+            nueva_categoria = Categoria(**categoria)
+            db.session.add(nueva_categoria)
+
         db.session.commit()
 
         return jsonify({'mensaje': 'Usuario registrado exitosamente'}), 201
