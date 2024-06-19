@@ -5,12 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-    <h1>HOME</h1>
-</body>
+    <section class="centered">
+        <div class="error" id="error"></div>
+        <div class="formulario">
+            <form id="registroGastoForm">
+                <div class="datos">
+                    <div class="input-container">
+                        <p>Monto</p>
+                        <input type="number" id="monto" name="monto" placeholder="Monto">
+                    </div>
+                    <div class="input-container">
+                        <p>Categoría</p>
+                        <input type="text" id="categoria" name="categoria" placeholder="Categoría (Opcional)">
+                    </div>
+                    <input type="hidden" id="id_usuario" value="1"> <!-- Id de usuario fijo como ejemplo -->
+                </div>
+                <div class="botones">
+                    <button type="submit">Registrar Gasto</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
-</html>
+    <script src="./js/home.js"></script>
+</body>

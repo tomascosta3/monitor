@@ -111,6 +111,43 @@ def registrar_usuario():
         db.session.close()
 
 
+
+@app.route('/registrar-gasto', methods=['POST'])
+def registrar_gasto():
+    try:
+        data = request.get_json()
+        monto = data.get('monto')
+        categoria_nombre = data.get('categoria', None)
+        id_usuario = data.get('id_usuario')
+
+        if not monto or not id_usuario:
+            return jsonify({'error': 'Monto e id de usuario son requeridos'}), 400
+
+        if categoria_nombre:
+            categoria = Categoria.query.filter_by(nombre=categoria_nombre, id_usuario=id_usuario).first()
+            if not categoria:
+                categoria = Categoria(nombre='Otros', descripcion='Otros gastos', id_usuario=id_usuario)
+                db.session.add(categoria)
+                db.session.commit()
+        else:
+            categoria = Categoria.query.filter_by(nombre='Otros', id_usuario=id_usuario).first()
+            if not categoria:
+                categoria = Categoria(nombre='Otros', descripcion='Otros gastos', id_usuario=id_usuario)
+                db.session.add(categoria)
+                db.session.commit()
+
+        nuevo_gasto = Gasto(monto=monto, id_categoria=categoria.id, id_usuario=id_usuario)
+        db.session.add(nuevo_gasto)
+        db.session.commit()
+
+        return jsonify({'mensaje': 'Gasto registrado exitosamente'}), 201
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': 'Ocurrió un error al registrar el gasto', 'detalle': str(e)}), 500
+    finally:
+        db.session.close()
+
+
 if __name__ == '__main__':
     print('Starting server...')
     with app.app_context():
