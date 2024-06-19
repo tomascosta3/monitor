@@ -88,10 +88,10 @@ def registrar_usuario():
 
         # Por cada nuevo usuario le añado categorías predeterminadas
         categorias_predeterminadas = [
-            {'nombre': 'Alimentos', 'descripcion': 'Gastos en alimentos', 'id_usuario': nuevo_usuario.id_usuario},
-            {'nombre': 'Transporte', 'descripcion': 'Gastos en transporte', 'id_usuario': nuevo_usuario.id_usuario},
-            {'nombre': 'Entretenimiento', 'descripcion': 'Gastos en entretenimiento', 'id_usuario': nuevo_usuario.id_usuario},
-            {'nombre': 'Otros', 'descripcion': 'Otros gastos', 'id_usuario': nuevo_usuario.id_usuario}
+            {'nombre': 'Alimentos', 'descripcion': 'Gastos en alimentos', 'id_usuario': nuevo_usuario.id},
+            {'nombre': 'Transporte', 'descripcion': 'Gastos en transporte', 'id_usuario': nuevo_usuario.id},
+            {'nombre': 'Entretenimiento', 'descripcion': 'Gastos en entretenimiento', 'id_usuario': nuevo_usuario.id},
+            {'nombre': 'Otros', 'descripcion': 'Otros gastos', 'id_usuario': nuevo_usuario.id}
         ]
 
         for categoria in categorias_predeterminadas:
