@@ -20,7 +20,7 @@ class Usuario(db.Model):
 class UsuarioLogueo(db.Model):
     __tablename__ = 'usuarios_logueo'
     id = db.Column(db.Integer, primary_key = True)
-    id_usuario = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
+    id_usuario = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable = False)
     contrasena = db.Column(db.String(255), nullable = False)
     ultimo_inicio_sesion = db.Column(db.DateTime, default = datetime.datetime.now)
     intentos_fallidos = db.Column(db.Integer, default = 0)
