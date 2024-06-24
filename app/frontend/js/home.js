@@ -39,3 +39,7 @@ document.getElementById('registroGastoForm').addEventListener('submit', function
             console.log('Error:', error);
         });
 });
+
+document.getElementById('botonVerGastos').addEventListener('click', function () {
+    window.location.href = './gastos.html';
+});
