@@ -112,7 +112,7 @@ def registrar_usuario():
 
 
 
-@app.route('/registrar-gasto', methods=['POST'])
+@app.route('/registrar-gasto', methods = ['POST'])
 def registrar_gasto():
     try:
         data = request.get_json()
@@ -124,19 +124,19 @@ def registrar_gasto():
             return jsonify({'error': 'Monto e id de usuario son requeridos'}), 400
 
         if categoria_nombre:
-            categoria = Categoria.query.filter_by(nombre=categoria_nombre, id_usuario=id_usuario).first()
+            categoria = Categoria.query.filter_by(nombre = categoria_nombre, id_usuario = id_usuario).first()
             if not categoria:
-                categoria = Categoria(nombre='Otros', descripcion='Otros gastos', id_usuario=id_usuario)
+                categoria = Categoria(nombre = 'Otros', descripcion = 'Otros gastos', id_usuario = id_usuario)
                 db.session.add(categoria)
                 db.session.commit()
         else:
-            categoria = Categoria.query.filter_by(nombre='Otros', id_usuario=id_usuario).first()
+            categoria = Categoria.query.filter_by(nombre = 'Otros', id_usuario = id_usuario).first()
             if not categoria:
-                categoria = Categoria(nombre='Otros', descripcion='Otros gastos', id_usuario=id_usuario)
+                categoria = Categoria(nombre = 'Otros', descripcion = 'Otros gastos', id_usuario = id_usuario)
                 db.session.add(categoria)
                 db.session.commit()
 
-        nuevo_gasto = Gasto(monto=monto, id_categoria=categoria.id, id_usuario=id_usuario)
+        nuevo_gasto = Gasto(monto = monto, id_categoria = categoria.id, id_usuario = id_usuario)
         db.session.add(nuevo_gasto)
         db.session.commit()
 
@@ -146,6 +146,23 @@ def registrar_gasto():
         return jsonify({'error': 'Ocurrió un error al registrar el gasto', 'detalle': str(e)}), 500
     finally:
         db.session.close()
+
+
+@app.route('/lista-gastos', methods = ['POST'])
+def lista_gastos():
+    try:
+        gastos = Gasto.query.filter_by(activo = True).all()
+        gastos_lista = []
+        for gasto in gastos:
+            gastos_lista.append({
+                'id_gasto': gasto.id,
+                'monto': gasto.monto,
+                'fecha': gasto.fecha,
+                'id_categoria': gasto.id_categoria
+            })
+        return jsonify({'gastos': gastos_lista}), 200
+    except Exception as e:
+        return jsonify({'error': 'Ocurrió un error al obtener los gastos', 'detalle': str(e)}), 500
 
 
 if __name__ == '__main__':
