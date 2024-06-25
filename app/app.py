@@ -7,6 +7,7 @@ from models import db, Usuario, UsuarioLogueo, Categoria, Gasto
 app = Flask(__name__)
 cors = CORS(app)
 port = 5000
+app.secret_key = 'monitor*.12'
 
 # Configuración de la base de datos
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://monitor:monitor*.12@localhost:5432/monitor'
