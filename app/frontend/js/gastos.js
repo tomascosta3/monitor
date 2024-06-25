@@ -32,17 +32,9 @@ function mostrarGastos(gastos) {
         const gastoDiv = document.createElement('div');
         gastoDiv.setAttribute('class', 'gasto');
 
-        const monto = document.createElement('p');
-        monto.textContent = `$${gasto.monto}`;
-        gastoDiv.appendChild(monto);
-
-        const conector = document.createElement('p');
-        conector.textContent = 'en';
-        gastoDiv.appendChild(conector);
-
-        const categoria = document.createElement('p');
-        categoria.textContent = `${gasto.categoria || 'Otros'}`;
-        gastoDiv.appendChild(categoria);
+        const infoGasto = document.createElement('p');
+        infoGasto.textContent = `$${gasto.monto} en ${gasto.categoria || 'Otros'}`;
+        gastoDiv.appendChild(infoGasto);
 
         lista.appendChild(gastoDiv);
     });
