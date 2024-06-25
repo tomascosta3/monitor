@@ -1,8 +1,10 @@
+// Redirrección al seleccionar en agregar gasto
 document.getElementById('botonAgregarGasto').addEventListener('click', function () {
     window.location.href = './home.html';
 });
 
 
+// Obtengo la lista de gastos de la base de datos
 fetch('http://127.0.0.1:5000/lista-gastos', {
     method: 'POST',
     headers: {
@@ -24,6 +26,7 @@ fetch('http://127.0.0.1:5000/lista-gastos', {
 });
 
 
+// Muestro la lista de los gastos
 function mostrarGastos(gastos) {
     const lista = document.getElementById('listaGastos');
     lista.innerHTML = '';
@@ -39,3 +42,9 @@ function mostrarGastos(gastos) {
         lista.appendChild(gastoDiv);
     });
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const botonLista = document.getElementById('botonLista');
+    botonLista.classList.add('activo');
+});

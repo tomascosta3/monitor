@@ -79,6 +79,14 @@ button:active {
     background-color: var(--active-color);
 }
 
+button.activo {
+    background-color: var(--active-color);
+}
+
+button.activo:hover {
+    background-color: var(--primary-color);
+}
+
 .input-container {
     position: relative;
     width: 100%;
