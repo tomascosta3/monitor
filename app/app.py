@@ -53,6 +53,10 @@ def login():
         return jsonify({'error': 'Ocurrió un error al iniciar sesión', 'detalle': str(e)}), 500
 
 
+@app.route('/logout')
+def logout():
+    session.pop('id_usuario', None)
+
 
 @app.route('/registrar-usuario', methods = ['POST'])
 def registrar_usuario():
