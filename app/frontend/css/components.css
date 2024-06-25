@@ -112,6 +112,22 @@ button:active {
     text-align: center;
 }
 
+.lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--primary-color);
+    padding: 15px 10px;
+    border-radius: 10px;
+    width: 25%;
+}
+
+.gasto {
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+}
+
 @media screen and (max-width: 480px) {
     .formulario {
         width: 80%;
