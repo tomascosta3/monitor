@@ -158,7 +158,7 @@ def lista_gastos():
                 'id_gasto': gasto.id,
                 'monto': gasto.monto,
                 'fecha': gasto.fecha,
-                'id_categoria': gasto.id_categoria
+                'categoria': gasto.categoria.nombre
             })
         return jsonify({'gastos': gastos_lista}), 200
     except Exception as e:
