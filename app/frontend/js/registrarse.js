@@ -68,4 +68,4 @@ document.getElementById('usuarioRegistroForm').addEventListener('submit', functi
 
 document.getElementById('botonVolver').addEventListener('click', function () {
     window.location.href = './login.html';
-})
+});
