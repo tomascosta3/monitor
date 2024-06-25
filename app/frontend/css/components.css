@@ -128,6 +128,24 @@ button:active {
     background-color: #f8f9fa;
 }
 
+.barra-vistas {
+    position: absolute;
+    top: 50px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.opciones-vistas {
+    display: flex;
+    gap: 10px;
+}
+
+.divisor-vertical {
+    border-left: solid black 1px;
+    border-color: var(--primary-color);
+}
+
 @media screen and (max-width: 480px) {
     .formulario {
         width: 80%;
