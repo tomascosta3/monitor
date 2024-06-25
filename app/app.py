@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request, render_template, jsonify
+from flask import Flask, redirect, url_for, request, render_template, jsonify, session
 from flask_cors import CORS, cross_origin
 from flask_jwt_extended import JWTManager, create_access_token, set_access_cookies, unset_jwt_cookies
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -37,6 +37,8 @@ def login():
             if usuario_logueo and check_password_hash(usuario_logueo.contrasena, contrasena):
                 access_token = create_access_token(identity = usuario.id)
 
+                # Guardo el id del usuario en la sesión
+                session['id_usuario'] = usuario.id
                 response = jsonify({'mensaje': 'Inicio de sesión exitoso'})
 
                 if recordar:
