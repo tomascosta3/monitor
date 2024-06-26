@@ -54,9 +54,12 @@ def login():
         return jsonify({'error': 'Ocurrió un error al iniciar sesión', 'detalle': str(e)}), 500
 
 
-@app.route('/logout')
+@app.route('/logout', methods = ['POST'])
 def logout():
-    session.pop('id_usuario', None)
+    if 'id_usuario' in session:
+        session.pop('id_usuario', None)
+    
+    return jsonify({"message": "Sesión cerrada exitosamente"}), 200
 
 
 @app.route('/registrar-usuario', methods = ['POST'])
