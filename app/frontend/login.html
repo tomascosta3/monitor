@@ -10,36 +10,37 @@
 </head>
 
 <body>
-
-    <section class="centered">
-        <div class="error" id="error"></div>
-        <div class="formulario">
-            <form id="loginForm">
-                <div class="datos">
-                    <div class="input-container">
-                        <p>Email / Nombre de usuario</p>
-                        <input type="text" id="usuario" name="usuario" placeholder="Email o nombre de usuario">
+    <div class="main-container">
+        <section class="centered">
+            <div class="error" id="error"></div>
+            <div class="formulario">
+                <form id="loginForm">
+                    <div class="datos">
+                        <div class="input-container">
+                            <p>Email / Nombre de usuario</p>
+                            <input type="text" id="usuario" name="usuario" placeholder="Email o nombre de usuario">
+                        </div>
+                        <div class="input-container">
+                            <p>Contraseña</p>
+                            <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña">
+                        </div>
                     </div>
-                    <div class="input-container">
-                        <p>Contraseña</p>
-                        <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña">
+                    <div class="acceso flex justify-evenly">
+                        <div class="campo">
+                            <input type="checkbox" name="recordarContrasena" id="recordarContrasena">
+                            <label for="recordarContrasena">Recordar contraseña</label>
+                        </div>
+                        <button type="submit">Iniciar sesión</button>
                     </div>
-                </div>
-                <div class="acceso flex justify-evenly">
-                    <div class="campo">
-                        <input type="checkbox" name="recordarContrasena" id="recordarContrasena">
-                        <label for="recordarContrasena">Recordar contraseña</label>
+                    <hr>
+                    <div class="botones">
+                        <button id="botonOlvideContraseña" type="button">Olvidé mi contraseña</button>
+                        <button id="botonRegistrarme" type="button">Registrarme</button>
                     </div>
-                    <button type="submit">Iniciar sesión</button>
-                </div>
-                <hr>
-                <div class="botones">
-                    <button id="botonOlvideContraseña" type="button">Olvidé mi contraseña</button>
-                    <button id="botonRegistrarme" type="button">Registrarme</button>
-                </div>
-            </form>
-        </div>
-    </section>
+                </form>
+            </div>
+        </section>
+    </div>
 
     <script src="./js/login.js"></script>
 </body>

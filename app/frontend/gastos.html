@@ -10,30 +10,37 @@
 </head>
 
 <body>
+    <div class="main-container">
 
-    <section class="centered">
+        <div id="navbar"></div>
 
-        <div class="barra-vistas">
-            <div class="opciones-vistas">
-                <button id="botonLista" type="button">Lista</button>
-                <button type="button">Cuadrícula</button>
-                <div class="divisor-vertical"></div>
-                <button type="button">Diario</button>
-                <button type="button">Semanal</button>
-                <button type="button">Mensual</button>
-                <button type="button">Anual</button>
+        <section class="centered">
+    
+            <div class="barra-vistas">
+                <div class="opciones-vistas">
+                    <button id="botonLista" type="button">Lista</button>
+                    <button type="button">Cuadrícula</button>
+                    <div class="divisor-vertical"></div>
+                    <button type="button">Diario</button>
+                    <button type="button">Semanal</button>
+                    <button type="button">Mensual</button>
+                    <button type="button">Anual</button>
+                </div>
             </div>
-        </div>
+    
+            <div class="error" id="error"></div>
+            <h1>Lista de gastos</h1>
+            <div class="lista" id="listaGastos"></div>
+            <div class="botones">
+                <button id="botonAgregarGasto" type="button">Agregar gasto</button>
+            </div>
 
-        <div class="error" id="error"></div>
-        <h1>Lista de gastos</h1>
-        <div class="lista" id="listaGastos"></div>
-        <div class="botones">
-            <button id="botonAgregarGasto" type="button">Agregar gasto</button>
-        </div>
-    </section>
+        </section>
+
+    </div>
 
     <script src="./js/gastos.js"></script>
+    <script src="./js/navbar.js"></script>
 </body>
 
 </html>

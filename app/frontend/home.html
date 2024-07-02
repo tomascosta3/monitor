@@ -9,31 +9,32 @@
 </head>
 
 <body>
-    <div id="navbar"></div>
+    <div class="main-container">
+        <div id="navbar"></div>
 
-    <section class="centered">
-        <div class="error" id="error"></div>
-        <div class="formulario">
-            <form id="registroGastoForm">
-                <div class="datos">
-                    <div class="input-container">
-                        <p>Monto</p>
-                        <input type="number" id="monto" name="monto" placeholder="Monto">
+        <section class="centered">
+            <div class="error" id="error"></div>
+            <div class="formulario">
+                <form id="registroGastoForm">
+                    <div class="datos">
+                        <div class="input-container">
+                            <p>Monto</p>
+                            <input type="number" id="monto" name="monto" placeholder="Monto">
+                        </div>
+                        <div class="input-container">
+                            <p>Categoría</p>
+                            <input type="text" id="categoria" name="categoria" placeholder="Categoría (Opcional)">
+                        </div>
+                        <input type="hidden" id="id_usuario" value="1"> <!-- Id de usuario fijo como ejemplo -->
                     </div>
-                    <div class="input-container">
-                        <p>Categoría</p>
-                        <input type="text" id="categoria" name="categoria" placeholder="Categoría (Opcional)">
+                    <div class="botones">
+                        <button id="botonVerGastos" type="button">Ver gastos</button>
+                        <button type="submit">Registrar Gasto</button>
                     </div>
-                    <input type="hidden" id="id_usuario" value="1"> <!-- Id de usuario fijo como ejemplo -->
-                </div>
-                <div class="botones">
-                    <button id="botonVerGastos" type="button">Ver gastos</button>
-                    <button type="submit">Registrar Gasto</button>
-                </div>
-            </form>
-        </div>
-    </section>
-
+                </form>
+            </div>
+        </section>
+    </div>
     <script src="./js/home.js"></script>
     <script src="./js/navbar.js"></script>
 </body>

@@ -10,50 +10,52 @@
 </head>
 
 <body>
-    <section class="centered">
-        <div class="error" id="error"></div>
-        <div class="formulario">
-            <form id="usuarioRegistroForm">
-                <div class="datos">
-                    <div class="input-container">
-                        <p>Nombre</p>
-                        <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+    <div class="main-container">
+        <section class="centered">
+            <div class="error" id="error"></div>
+            <div class="formulario">
+                <form id="usuarioRegistroForm">
+                    <div class="datos">
+                        <div class="input-container">
+                            <p>Nombre</p>
+                            <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+                        </div>
+    
+                        <div class="input-container">
+                            <p>Apellido</p>
+                            <input type="text" id="apellido" name="apellido" placeholder="Apellido">
+                        </div>
+    
+                        <div class="input-container">
+                            <p>Nombre de usuario</p>
+                            <input type="text" id="username" name="username" placeholder="Nombre de usuario">
+                        </div>
+    
+                        <div class="input-container">
+                            <p>Email</p>
+                            <input type="email" id="email" name="email" placeholder="Email">
+                        </div>
+    
+                        <div class="input-container">
+                            <p>Contraseña</p>
+                            <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña">
+                        </div>
+    
+                        <div class="input-container">
+                            <p>Confirmar contraseña</p>
+                            <input type="password" id="confirmarContraseña" name="confirmarContraseña"
+                                placeholder="Confirmar contraseña">
+                        </div>
                     </div>
-
-                    <div class="input-container">
-                        <p>Apellido</p>
-                        <input type="text" id="apellido" name="apellido" placeholder="Apellido">
+    
+                    <div class="botones">
+                        <button type="button" id="botonVolver">Volver</button>
+                        <button type="submit">Crear cuenta</button>
                     </div>
-
-                    <div class="input-container">
-                        <p>Nombre de usuario</p>
-                        <input type="text" id="username" name="username" placeholder="Nombre de usuario">
-                    </div>
-
-                    <div class="input-container">
-                        <p>Email</p>
-                        <input type="email" id="email" name="email" placeholder="Email">
-                    </div>
-
-                    <div class="input-container">
-                        <p>Contraseña</p>
-                        <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña">
-                    </div>
-
-                    <div class="input-container">
-                        <p>Confirmar contraseña</p>
-                        <input type="password" id="confirmarContraseña" name="confirmarContraseña"
-                            placeholder="Confirmar contraseña">
-                    </div>
-                </div>
-
-                <div class="botones">
-                    <button type="button" id="botonVolver">Volver</button>
-                    <button type="submit">Crear cuenta</button>
-                </div>
-            </form>
-        </div>
-    </section>
+                </form>
+            </div>
+        </section>
+    </div>
 
     <script src="./js/registrarse.js"></script>
 </body>
