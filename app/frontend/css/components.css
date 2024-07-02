@@ -137,8 +137,6 @@ button.activo:hover {
 }
 
 .barra-vistas {
-    position: absolute;
-    top: 50px;
     width: 80%;
     display: flex;
     justify-content: center;
