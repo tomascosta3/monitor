@@ -56,17 +56,17 @@ def registrar_usuario():
         hashed_password = generate_password_hash(contrasena)
 
         nuevo_usuario = Usuario(
-            nombre=nombre,
-            apellido=apellido,
-            email=email,
-            username=username
+            nombre = nombre,
+            apellido = apellido,
+            email = email,
+            username = username
         )
         db.session.add(nuevo_usuario)
         db.session.commit()
 
         nuevo_usuario_logueo = UsuarioLogueo(
-            id_usuario=nuevo_usuario.id,
-            contrasena=hashed_password
+            id_usuario = nuevo_usuario.id,
+            contrasena = hashed_password
         )
         db.session.add(nuevo_usuario_logueo)
         db.session.commit()
@@ -103,6 +103,7 @@ def registrar_gasto():
         data = request.get_json()
         monto = data.get('monto')
         categoria_nombre = data.get('categoria', None)
+        descripcion = data.get('descripcion', None)
         id_usuario = data.get('id_usuario')
 
         if not monto or not id_usuario:
@@ -121,7 +122,7 @@ def registrar_gasto():
                 db.session.add(categoria)
                 db.session.commit()
 
-        nuevo_gasto = Gasto(monto = monto, id_categoria = categoria.id, id_usuario = id_usuario)
+        nuevo_gasto = Gasto(monto = monto, id_categoria = categoria.id, id_usuario = id_usuario, descripcion = descripcion)
         db.session.add(nuevo_gasto)
         db.session.commit()
 
