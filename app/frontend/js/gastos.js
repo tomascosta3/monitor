@@ -39,9 +39,29 @@ function mostrarGastos(gastos) {
         infoGasto.textContent = `$${gasto.monto} en ${gasto.categoria || 'Otros'}`;
         gastoDiv.appendChild(infoGasto);
 
+        const botonesDiv = document.createElement('div');
+        botonesDiv.setAttribute('class', 'botones');
+
+        const botonDescripcion = document.createElement('i');
+        botonDescripcion.classList.add('fas');
+        botonDescripcion.classList.add('fa-list');
+        botonesDiv.appendChild(botonDescripcion);
+
+        const botonEditar = document.createElement('i');
+        botonEditar.classList.add('fas');
+        botonEditar.classList.add('fa-edit');
+        botonesDiv.appendChild(botonEditar);
+
+        const botonEliminar = document.createElement('i');
+        botonEliminar.classList.add('fas');
+        botonEliminar.classList.add('fa-trash');
+        botonesDiv.appendChild(botonEliminar);
+
+        gastoDiv.appendChild(botonesDiv);
         lista.appendChild(gastoDiv);
     });
 }
+
 
 
 document.addEventListener('DOMContentLoaded', function() {
