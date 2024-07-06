@@ -1,6 +1,5 @@
 from flask import Flask, redirect, url_for, request, render_template, jsonify, session
 from flask_cors import CORS, cross_origin
-from flask_jwt_extended import JWTManager, create_access_token, set_access_cookies, unset_jwt_cookies
 from werkzeug.security import check_password_hash, generate_password_hash
 from models import db, Usuario, UsuarioLogueo, Categoria, Gasto
 
@@ -13,53 +12,29 @@ app.secret_key = 'monitor*.12'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://monitor:monitor*.12@localhost:5432/monitor'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Configuración de JWT
-app.config['JWT_SECRET_KEY'] = 'monitor*.12'  # Cambia esto por una clave secreta segura
-app.config['JWT_TOKEN_LOCATION'] = ['cookies']
-app.config['JWT_COOKIE_CSRF_PROTECT'] = True  # Habilitar CSRF protection para mayor seguridad
-
-jwt = JWTManager(app)
-
 db.init_app(app)
 
-
-@app.route('/login', methods = ['POST'])
+@app.route('/login', methods=['POST'])
 def login():
-    try:
-        data = request.get_json()
-        usuario_acceso = data.get('usuario')
-        contrasena = data.get('contrasena')
-        recordar = data.get('recordar', False)
+    data = request.json
+    usuario_acceso = data.get('usuario')
+    contrasena = data.get('contrasena')
 
-        usuario = Usuario.query.filter((Usuario.email == usuario_acceso) | (Usuario.username == usuario_acceso)).first()
+    usuario = Usuario.query.filter((Usuario.email == usuario_acceso) | (Usuario.username == usuario_acceso)).first()
 
-        if usuario:
-            usuario_logueo = UsuarioLogueo.query.filter_by(id_usuario = usuario.id).first()
-            if usuario_logueo and check_password_hash(usuario_logueo.contrasena, contrasena):
-                access_token = create_access_token(identity = usuario.id)
-
-                # Guardo el id del usuario en la sesión
-                session['id_usuario'] = usuario.id
-                response = jsonify({'mensaje': 'Inicio de sesión exitoso'})
-
-                if recordar:
-                    set_access_cookies(response, access_token)
-                else:
-                    response.set_cookie('access_token_cookie', '', expires=0)
-
-                return response, 200
-        return jsonify({'error': 'Credenciales incorrectas'}), 401
-
-    except Exception as e:
-        return jsonify({'error': 'Ocurrió un error al iniciar sesión', 'detalle': str(e)}), 500
+    if usuario:
+        usuario_logueo = UsuarioLogueo.query.filter_by(id_usuario=usuario.id).first()
+        if usuario_logueo and check_password_hash(usuario_logueo.contrasena, contrasena):
+            return jsonify({'message': 'Inicio de sesión exitoso'}), 200
+        else:
+            return jsonify({'message': 'Credenciales incorrectas'}), 401
+    else:
+        return jsonify({'message': 'Credenciales incorrectas'}), 401
 
 
-@app.route('/logout', methods = ['POST'])
+@app.route('/logout', methods=['POST'])
 def logout():
-    if 'id_usuario' in session:
-        session.pop('id_usuario', None)
-    
-    return jsonify({"message": "Sesión cerrada exitosamente"}), 200
+    return jsonify({'message': 'Sesión cerrada'}), 200
 
 
 @app.route('/registrar-usuario', methods = ['POST'])
