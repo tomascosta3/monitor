@@ -1,3 +1,29 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const id_usuario = document.getElementById('id_usuario').value;
+
+    fetch(`http://127.0.0.1:5000/categorias/${id_usuario}`, {
+        method: 'GET'
+    })
+    .then(response => response.json())
+    .then(data => {
+        const selectCategoria = document.getElementById('categoria');
+
+        data.categorias.forEach(categoria => {
+            const option = document.createElement('option');
+            option.value = categoria.id;
+            option.text = categoria.nombre;
+            if (categoria.nombre == 'Otros') {
+                option.defaultSelected = true;
+            }
+            
+            selectCategoria.add(option);
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
 document.getElementById('registroGastoForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
