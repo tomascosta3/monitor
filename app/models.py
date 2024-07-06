@@ -41,6 +41,7 @@ class Gasto(db.Model):
     __tablename__ = 'gastos'
     id = db.Column(db.Integer, primary_key = True)
     monto = db.Column(db.Float, nullable = False)
+    descripcion = db.Column(db.String(255), nullable=True)
     fecha = db.Column(db.DateTime, default = datetime.datetime.now)
     id_categoria = db.Column(db.Integer, db.ForeignKey('categorias.id'), nullable = True)
     id_usuario = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable = False)
