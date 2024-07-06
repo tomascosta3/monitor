@@ -3,6 +3,7 @@ document.getElementById('registroGastoForm').addEventListener('submit', function
 
     const monto = document.getElementById('monto').value;
     const categoria = document.getElementById('categoria').value;
+    const descripcion = document.getElementById('descripcion').value;
     const id_usuario = document.getElementById('id_usuario').value;
     const errorDiv = document.getElementById('error');
 
@@ -23,6 +24,7 @@ document.getElementById('registroGastoForm').addEventListener('submit', function
         body: JSON.stringify({
             monto: monto,
             categoria: categoria || null, // Envía null si la categoría está vacía
+            descripcion: descripcion || null, // Envía null si la categoría está vacía
             id_usuario: id_usuario
         })
     })
