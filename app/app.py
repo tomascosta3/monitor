@@ -149,6 +149,20 @@ def lista_gastos():
         return jsonify({'gastos': gastos_lista}), 200
     except Exception as e:
         return jsonify({'error': 'Ocurrió un error al obtener los gastos', 'detalle': str(e)}), 500
+    
+
+
+@app.route('/categorias/<int:id_usuario>', methods = ['GET'])
+def obtener_categorias(id_usuario):
+    categorias = Categoria.query.filter_by(id_usuario = id_usuario, activo = True).all()
+    categorias_datos = []
+    for categoria in categorias:
+        categoria_dicc = {
+            'id': categoria.id,
+            'nombre': categoria.nombre
+        }
+        categorias_datos.append(categoria_dicc)
+    return jsonify({'categorias': categorias_datos}), 200
 
 
 if __name__ == '__main__':
