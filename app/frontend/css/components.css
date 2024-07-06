@@ -99,7 +99,8 @@ button.activo:hover {
     color: var(--text-color);
 }
 
-.input-container input {
+.input-container input, 
+.input-container select  {
     width: 100%;
     padding: 10px;
     border: 1px solid var(--input-border-color);
