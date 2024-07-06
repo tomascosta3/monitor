@@ -132,9 +132,35 @@ button.activo:hover {
 }
 
 .gasto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     border-radius: 10px;
     padding: 10px 20px;
     background-color: #f8f9fa;
+    border-bottom: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.gasto p {
+    margin: 0;
+}
+
+.gasto .botones {
+    display: flex;
+    gap: 12px;
+}
+
+.gasto .botones i {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.gasto .botones i:hover {
+    color: var(--secondary-color);
 }
 
 .barra-vistas {
