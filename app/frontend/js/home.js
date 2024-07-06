@@ -24,7 +24,7 @@ document.getElementById('registroGastoForm').addEventListener('submit', function
         body: JSON.stringify({
             monto: monto,
             categoria: categoria || null, // Envía null si la categoría está vacía
-            descripcion: descripcion || null, // Envía null si la categoría está vacía
+            descripcion: descripcion || null, // Envía null si la descripción está vacía
             id_usuario: id_usuario
         })
     })
@@ -32,6 +32,7 @@ document.getElementById('registroGastoForm').addEventListener('submit', function
         .then(data => {
             if (data.error) {
                 errorDiv.textContent = data.error;
+                console.log(data.detalle);
             } else {
                 alert('Gasto guardado correctamente');
             }
