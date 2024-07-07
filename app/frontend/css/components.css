@@ -141,10 +141,29 @@ button.activo:hover {
     background-color: #f8f9fa;
     border-bottom: 1px solid #ccc;
     box-sizing: border-box;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-precio-categoria {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #f8f9fa;
 }
 
 .gasto p {
     margin: 0;
+}
+
+.gasto .descripcion {
+    font-size: 12px;
+    display: none;
+}
+
+.gasto .descripcion.activo {
+    display: block;
 }
 
 .gasto .botones {
