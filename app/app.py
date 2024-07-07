@@ -102,19 +102,25 @@ def registrar_gasto():
     try:
         data = request.get_json()
         monto = data.get('monto')
-        categoria_nombre = data.get('categoria', None)
+        id_categoria = data.get('categoria', None)
         descripcion = data.get('descripcion', None)
         id_usuario = data.get('id_usuario')
 
         if not monto or not id_usuario:
             return jsonify({'error': 'Monto e id de usuario son requeridos'}), 400
 
-        if categoria_nombre:
-            categoria = Categoria.query.filter_by(nombre = categoria_nombre, id_usuario = id_usuario).first()
+        if id_categoria:
+            categoria = Categoria.query.filter_by(id = id_categoria, id_usuario = id_usuario).first()
+            
             if not categoria:
-                categoria = Categoria(nombre = 'Otros', descripcion = 'Otros gastos', id_usuario = id_usuario)
-                db.session.add(categoria)
-                db.session.commit()
+                categoria_por_defecto = Categoria.query.filter_by(nombre = 'Otros', id_usuario = id_usuario).first()
+
+                if not categoria_por_defecto:
+                    categoria_por_defecto = Categoria(nombre = 'Otros', descripcion = 'Otros gastos', id_usuario = id_usuario)
+                    db.session.add(categoria_por_defecto)
+                    db.session.commit()
+                
+                categoria = categoria_por_defecto
         else:
             categoria = Categoria.query.filter_by(nombre = 'Otros', id_usuario = id_usuario).first()
             if not categoria:
@@ -134,17 +140,18 @@ def registrar_gasto():
         db.session.close()
 
 
-@app.route('/lista-gastos', methods = ['POST'])
+@app.route('/lista-gastos', methods = ['GET'])
 def lista_gastos():
     try:
         gastos = Gasto.query.filter_by(activo = True).all()
         gastos_lista = []
         for gasto in gastos:
             gastos_lista.append({
-                'id_gasto': gasto.id,
+                'id': gasto.id,
                 'monto': gasto.monto,
                 'fecha': gasto.fecha,
-                'categoria': gasto.categoria.nombre
+                'categoria': gasto.categoria.nombre,
+                'descripcion': gasto.descripcion
             })
         return jsonify({'gastos': gastos_lista}), 200
     except Exception as e:
@@ -163,6 +170,15 @@ def obtener_categorias(id_usuario):
         }
         categorias_datos.append(categoria_dicc)
     return jsonify({'categorias': categorias_datos}), 200
+
+
+@app.route('/gastos/<int:id_gasto>/descripcion', methods = ['GET'])
+def obtener_descripcion_gasto(id_gasto):
+    gasto = Gasto.query.filter_by(id = id_gasto).first()
+    if gasto:
+        return jsonify({'descripcion': gasto.descripcion}), 200
+    else:
+        return jsonify({'error': 'Ocurrió un error al obtener la descripcion'}), 500
 
 
 if __name__ == '__main__':
