@@ -62,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Agrego las opciones del select de categorías
         const selectCategoria = document.getElementById('editarCategoria');
-        console.log(categorias);
         categorias.forEach(categoria => {
             const option = document.createElement('option');
             option.value = categoria.id;
@@ -172,4 +171,31 @@ document.addEventListener('DOMContentLoaded', function () {
     // El boton de la lista lo muestro activado
     const botonLista = document.getElementById('botonLista');
     botonLista.classList.add('activo');
+
+    // Enviar datos del form de edición de gasto al backend
+    document.getElementById('formEditarGasto').onsubmit = function (event) {
+        event.preventDefault();
+
+        const idGasto = this.getAttribute('data-id');
+        const monto = document.getElementById('editarMonto').value;
+        const categoria = document.getElementById('editarCategoria').value;
+        const descripcion = document.getElementById('editarDescripcion').value;
+
+        fetch('http://127.0.0.1:5000/gastos/' + idGasto + '/editar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ monto, categoria, descripcion })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('Error al editar el gasto: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error al editar el gasto:', error));
+    }
 });

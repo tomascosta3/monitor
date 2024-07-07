@@ -185,6 +185,34 @@ def eliminar_gasto(id_gasto):
         return jsonify({'message': 'Gasto no encontrado o no autorizado', 'exito': False}), 404
 
 
+
+@app.route('/gastos/<int:id_gasto>/editar', methods = ['POST'])
+def editar_gasto(id_gasto):
+    data = request.json
+    monto = data.get('monto')
+    id_categoria = data.get('categoria')
+    descripcion = data.get('descripcion')
+
+    gasto = Gasto.query.filter_by(id = id_gasto).first()
+
+    if not gasto:
+        return jsonify({'success': False, 'message': 'Gasto no encontrado'}), 404
+
+    if monto is not None:
+        gasto.monto = monto
+    if id_categoria is not None:
+        gasto.id_categoria = id_categoria
+    if descripcion is not None:
+        gasto.descripcion = descripcion
+
+    try:
+        db.session.commit()
+        return jsonify({'success': True, 'message': 'Gasto guardado'}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'success': False, 'message': 'Error al editar el gasto: {}'.format(str(e))}), 500
+
+
 if __name__ == '__main__':
     print('Starting server...')
     with app.app_context():
