@@ -202,8 +202,7 @@ def editar_gasto(id_gasto):
         gasto.monto = monto
     if id_categoria is not None:
         gasto.id_categoria = id_categoria
-    if descripcion is not None:
-        gasto.descripcion = descripcion
+    gasto.descripcion = descripcion
 
     try:
         db.session.commit()
