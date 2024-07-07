@@ -150,6 +150,7 @@ def lista_gastos():
                 'id': gasto.id,
                 'monto': gasto.monto,
                 'fecha': gasto.fecha,
+                'id_categoria': gasto.id_categoria,
                 'categoria': gasto.categoria.nombre,
                 'descripcion': gasto.descripcion
             })

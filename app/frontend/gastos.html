@@ -11,6 +11,32 @@
 </head>
 
 <body>
+    <div id="modalEditarGasto" class="modal">
+        <div class="modal-contenido">
+            <div class="boton-superior">
+                <span class="cerrar">&times;</span>
+            </div>
+            <form id="formEditarGasto">
+                <div class="datos">
+                    <div class="input-container">
+                        <label for="editarMonto">Monto</label>
+                        <input type="number" id="editarMonto" name="monto" required>
+                    </div>
+                    <div class="input-container">
+                        <label for="editarCategoria">Categoría</label>
+                        <select id="editarCategoria" name="categoria" required></select>
+                    </div>
+                    <div class="input-container">
+                        <label for="editarDescripcion">Descripción</label>
+                        <input type="text" id="editarDescripcion" name="descripcion" required>
+                    </div>
+                    <button type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
     <div class="main-container">
 
         <div id="navbar"></div>
@@ -39,7 +65,7 @@
         </section>
 
     </div>
-
+    <input type="hidden" id="id_usuario" value="1">
     <script src="./js/gastos.js"></script>
     <script src="./js/navbar.js"></script>
 </body>
