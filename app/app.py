@@ -172,13 +172,16 @@ def obtener_categorias(id_usuario):
     return jsonify({'categorias': categorias_datos}), 200
 
 
-@app.route('/gastos/<int:id_gasto>/descripcion', methods = ['GET'])
-def obtener_descripcion_gasto(id_gasto):
+@app.route('/gastos/<int:id_gasto>/eliminar', methods = ['POST'])
+def eliminar_gasto(id_gasto):
     gasto = Gasto.query.filter_by(id = id_gasto).first()
+
     if gasto:
-        return jsonify({'descripcion': gasto.descripcion}), 200
+        db.session.delete(gasto)
+        db.session.commit()
+        return jsonify({'message': 'Gasto eliminado exitosamente', 'exito': True}), 200
     else:
-        return jsonify({'error': 'Ocurrió un error al obtener la descripcion'}), 500
+        return jsonify({'message': 'Gasto no encontrado o no autorizado', 'exito': False}), 404
 
 
 if __name__ == '__main__':

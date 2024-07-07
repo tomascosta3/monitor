@@ -101,55 +101,23 @@ function mostrarGastos(gastos) {
 }
 
 
-
-function editarGasto(gastoId) {
-    // Aquí puedes mostrar un formulario para editar el gasto
-    // Luego enviar los datos editados al servidor
-    const nuevoMonto = prompt('Ingrese el nuevo monto:');
-    const nuevaCategoria = prompt('Ingrese la nueva categoría:');
-    const nuevaDescripcion = prompt('Ingrese la nueva descripción:');
-
-    fetch(`http://127.0.0.1:5000/gastos/${gastoId}`, {
-        method: 'PUT',
+function eliminarGasto(id_gasto) {
+    fetch(`http://127.0.0.1:5000/gastos/${id_gasto}/eliminar`, {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            monto: nuevoMonto,
-            categoria: nuevaCategoria,
-            descripcion: nuevaDescripcion
-        })
+        }
     })
-        .then(response => response.json())
-        .then(data => {
-            alert('Gasto actualizado con éxito');
-            // Actualiza la lista de gastos
-            obtenerGastos();
-        })
-        .catch(error => {
-            console.error('Error al editar el gasto:', error);
-        });
-}
-
-
-function eliminarGasto(gastoId) {
-    fetch(`http://127.0.0.1:5000/gastos/${gastoId}`, {
-        method: 'DELETE'
+    .then(response => response.json())
+    .then(data => {
+        if (data.exito) {
+            location.reload();
+        } else {
+            alert('Error al eliminar el gasto: ' + data.message);
+        }
     })
-        .then(response => {
-            if (response.ok) {
-                alert('Gasto eliminado con éxito');
-                // Actualiza la lista de gastos
-                obtenerGastos();
-            } else {
-                alert('Error al eliminar el gasto');
-            }
-        })
-        .catch(error => {
-            console.error('Error al eliminar el gasto:', error);
-        });
+    .catch(error => console.error('Error al eliminar el gasto:', error));
 }
-
 
 
 document.addEventListener('DOMContentLoaded', function() {
