@@ -37,7 +37,8 @@ button {
     gap: 0.2rem;
 }
 
-.campo input, .campo label {
+.campo input,
+.campo label {
     cursor: pointer;
 }
 
@@ -99,7 +100,8 @@ button.activo:hover {
     color: var(--text-color);
 }
 
-.input-container input {
+.input-container input,
+.input-container select {
     width: 100%;
     padding: 10px;
     border: 1px solid var(--input-border-color);
@@ -131,9 +133,54 @@ button.activo:hover {
 }
 
 .gasto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     border-radius: 10px;
     padding: 10px 20px;
     background-color: #f8f9fa;
+    border-bottom: 1px solid #ccc;
+    box-sizing: border-box;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-precio-categoria {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #f8f9fa;
+}
+
+.gasto p {
+    margin: 0;
+}
+
+.gasto .descripcion {
+    font-size: 12px;
+    display: none;
+}
+
+.gasto .descripcion.activo {
+    display: block;
+}
+
+.gasto .botones {
+    display: flex;
+    gap: 12px;
+}
+
+.gasto .botones i {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.gasto .botones i:hover {
+    color: var(--secondary-color);
 }
 
 .barra-vistas {
@@ -196,6 +243,59 @@ button.activo:hover {
     background-color: var(--active-color);
 }
 
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-contenido {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.boton-superior {
+    height: 20px;
+}
+
+.cerrar {
+    color: #aaa;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cerrar:hover,
+.cerrar:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.total {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--primary-color);
+    padding: 15px 10px;
+    border-radius: 10px;
+    width: 25%;
+}
 
 @media screen and (max-width: 480px) {
     .formulario {
