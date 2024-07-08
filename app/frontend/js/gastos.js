@@ -90,6 +90,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    
+
     // Muestro la lista de los gastos
     function mostrarGastos(gastos) {
         const lista = document.getElementById('listaGastos');
@@ -98,6 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const gastoTotalP = document.getElementById('gastoTotal');
         var gastoTotal = 0;
         
+        var gastoCategorias = {};
+
         gastos.forEach(gasto => {
             const gastoDiv = document.createElement('div');
             gastoDiv.setAttribute('class', 'gasto');
@@ -151,9 +155,29 @@ document.addEventListener('DOMContentLoaded', function () {
             lista.appendChild(gastoDiv);
 
             gastoTotal += gasto.monto;
+
+            if(gasto.categoria in gastoCategorias) {
+                gastoCategorias[gasto.categoria] += gasto.monto;
+            } else {
+                gastoCategorias[gasto.categoria] = gasto.monto;
+            }
         });
 
         gastoTotalP.textContent = 'Gasto total: $' + gastoTotal;
+
+        cargarTotalGastos(gastoCategorias);
+    }
+
+    function cargarTotalGastos(gastoCategorias) {
+        const gastoCategoriasDiv = document.getElementById('gastoCategorias');
+
+        for (let categoria in gastoCategorias) {
+            
+            const gastoCategoriaP = document.createElement('p');
+            gastoCategoriaP.textContent = 'Total ' + categoria + ': $' + gastoCategorias[categoria];
+            gastoCategoriasDiv.appendChild(gastoCategoriaP);
+        }
+
     }
 
     // Elimina el gasto que corresponda al id seleccionado
