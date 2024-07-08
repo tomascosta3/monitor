@@ -95,6 +95,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const lista = document.getElementById('listaGastos');
         lista.innerHTML = '';
 
+        const gastoTotalP = document.getElementById('gastoTotal');
+        var gastoTotal = 0;
+        
         gastos.forEach(gasto => {
             const gastoDiv = document.createElement('div');
             gastoDiv.setAttribute('class', 'gasto');
@@ -146,7 +149,11 @@ document.addEventListener('DOMContentLoaded', function () {
             gastoDiv.appendChild(descripcionGasto);
 
             lista.appendChild(gastoDiv);
+
+            gastoTotal += gasto.monto;
         });
+
+        gastoTotalP.textContent = 'Gasto total: $' + gastoTotal;
     }
 
     // Elimina el gasto que corresponda al id seleccionado

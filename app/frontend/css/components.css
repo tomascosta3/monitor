@@ -287,6 +287,16 @@ button.activo:hover {
 }
 
 
+.total {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--primary-color);
+    padding: 15px 10px;
+    border-radius: 10px;
+    width: 25%;
+}
+
 @media screen and (max-width: 480px) {
     .formulario {
         width: 80%;
