@@ -1,6 +1,6 @@
 ## Descripción
 
-**Gastos** es una aplicación web para registrar y gestionar tus gastos de manera sencilla y organizada.
+**Monitor** es una aplicación web para registrar y gestionar tus gastos de manera sencilla y organizada.
 
 ## Funcionalidades
 
